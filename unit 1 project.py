@@ -13,7 +13,26 @@ def create_metabolism_diagram():
     ax.set_ylim(0,6)
     ax.axis('off')
 
-    # food protein box
-    ax.add_patch(patches.FancyBboxPatch((0.5, 3.5), 2.2, 1.5, boxstyle="round,pad=0.1", fc="#FFD1DC", ec="#D32F2F", lw=2))
-    ax.text(1.6, 4.2, "Food Protein", ha="center", va="center", fontsize=12, fontweight="bold", color="#D32F2F")
-    ax.annotate("", xy=(1.6, 3.5), xytext=(0.5, 0.5), color="#D32F2F", lw=2, arrowstyle='->')
+    # food box
+    ax.add_patch(
+        patches.FancyBboxPatch(
+            (0.6, 2.2),
+            2.2,
+            1.6,
+            boxstyle="round,pad=0.2",
+            fc="#FFD1DC",
+            ec = "D32F2F",
+            lw = 2,
+        )
+    )
+    ax.text(
+        1.7,
+        3.2,
+        "Dietary Protein\n(e.g., meat, eggs, beans)",
+        ha="center",
+        va="center",
+        fontweight="bold",
+    )
+    ax.text(
+        
+    )
