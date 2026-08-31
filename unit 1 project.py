@@ -1,4 +1,3 @@
-
 # unit 1 project
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
@@ -7,336 +6,347 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = 'DejaVu Sans'
 
 
-def create_metabolism_diagram():
-  fig, ax = plt.subplots(figsize=(14, 5.5), dpi=300)
-  ax.set_xlim(0, 14)
-  ax.set_ylim(0, 6)
-  ax.axis('off')
+def create_combined_diagrams():
+  fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(11, 9), dpi=100)
+
+  # --- panel 1: metabolism ---
+  ax1.set_xlim(0, 11)
+  ax1.set_ylim(0, 4.5)
+  ax1.axis('off')
+  title1 = ax1.set_title(
+      'Metabolism: How Reactions Turn Meals into You',
+      fontweight='bold',
+      pad=10,
+  )
 
   # food box
-  ax.add_patch(
+  ax1.add_patch(
       patches.FancyBboxPatch(
-          (0.6, 1.8),
-          3.0,
-          2.4,
-          boxstyle='round,pad=0.15',
+          (0.6, 1.1),
+          2.5,
+          2.2,
+          boxstyle='round,pad=0.1',
           fc='#FFD1DC',
           ec='#D32F2F',
-          lw=2.5,
+          lw=1.8,
       )
   )
-  ax.text(
-      2.1,
-      3.4,
+  m_t1 = ax1.text(
+      1.85,
+      2.5,
       'Dietary Protein',
       ha='center',
       va='center',
-      fontsize=11,
       fontweight='bold',
       color='#B71C1C',
   )
-  ax.text(
-      2.1,
-      2.9,
-      '(e.g., Meat, Eggs, Beans)',
+  m_t2 = ax1.text(
+      1.85,
+      2.0,
+      '(e.g., Meat, Beans)',
       ha='center',
       va='center',
-      fontsize=8.5,
       color='#333333',
   )
-  ax.text(
-      2.1,
-      2.3,
+  m_t3 = ax1.text(
+      1.85,
+      1.5,
       '[Complex Polymer]',
       ha='center',
       va='center',
-      fontsize=8,
       style='italic',
       color='#555555',
   )
 
-  # catabolism arrow and labels
-  ax.annotate(
+  # catabolism arrow and text
+  ax1.annotate(
       '',
-      xy=(5.2, 3.0),
-      xytext=(3.8, 3.0),
+      xy=(4.2, 2.2),
+      xytext=(3.2, 2.2),
       arrowprops=dict(
-          facecolor='#D32F2F', edgecolor='#D32F2F', width=3, headwidth=9
+          facecolor='#D32F2F', edgecolor='#D32F2F', width=2, headwidth=6
       ),
   )
-  ax.text(
-      4.5,
-      3.4,
+  m_t4 = ax1.text(
+      3.7,
+      2.55,
       'Catabolism\n(Digestion)',
       ha='center',
       va='bottom',
       fontweight='bold',
       color='#D32F2F',
-      fontsize=9,
   )
-  ax.text(
-      4.5,
-      2.5,
+  m_t5 = ax1.text(
+      3.7,
+      1.85,
       'Releases Energy\nBreaks Bonds',
       ha='center',
       va='top',
-      fontsize=7.5,
       color='#444444',
   )
 
   # amino acids box
-  ax.add_patch(
+  ax1.add_patch(
       patches.FancyBboxPatch(
-          (5.4, 1.8),
-          3.0,
-          2.4,
-          boxstyle='round,pad=0.15',
+          (4.3, 1.1),
+          2.5,
+          2.2,
+          boxstyle='round,pad=0.1',
           fc='#FFF9C4',
           ec='#FBC02D',
-          lw=2.5,
+          lw=1.8,
       )
   )
-  ax.text(
-      6.9,
-      3.3,
+  m_t6 = ax1.text(
+      5.55,
+      2.4,
       'Free Amino Acids',
       ha='center',
       va='center',
-      fontsize=11,
       fontweight='bold',
       color='#F57F17',
   )
-  ax.text(
-      6.9,
-      2.5,
-      '[Monomer Building Blocks]',
+  m_t7 = ax1.text(
+      5.55,
+      1.8,
+      '[Monomer Blocks]',
       ha='center',
       va='center',
-      fontsize=8,
       style='italic',
       color='#555555',
   )
 
-  # anabolism arrow and labels
-  ax.annotate(
+  # anabolism arrow and text
+  ax1.annotate(
       '',
-      xy=(10.0, 3.0),
-      xytext=(8.6, 3.0),
+      xy=(7.9, 2.2),
+      xytext=(6.9, 2.2),
       arrowprops=dict(
-          facecolor='#388E3C', edgecolor='#388E3C', width=3, headwidth=9
+          facecolor='#388E3C', edgecolor='#388E3C', width=2, headwidth=6
       ),
   )
-  ax.text(
-      9.3,
-      3.4,
+  m_t8 = ax1.text(
+      7.4,
+      2.55,
       'Anabolism\n(Biosynthesis)',
       ha='center',
       va='bottom',
       fontweight='bold',
       color='#2E7D32',
-      fontsize=9,
   )
-  ax.text(
-      9.3,
-      2.5,
-      'Requires Energy (ATP)\nForms Peptide Bonds',
+  m_t9 = ax1.text(
+      7.4,
+      1.85,
+      'Uses ATP Energy\nBuilds Bonds',
       ha='center',
       va='top',
-      fontsize=7.5,
       color='#444444',
   )
 
-  # body structure box
-  ax.add_patch(
+  # human body structures box
+  ax1.add_patch(
       patches.FancyBboxPatch(
-          (10.2, 1.8),
-          3.2,
-          2.4,
-          boxstyle='round,pad=0.15',
+          (8.0, 1.1),
+          2.5,
+          2.2,
+          boxstyle='round,pad=0.1',
           fc='#C8E6C9',
           ec='#388E3C',
-          lw=2.5,
+          lw=1.8,
       )
   )
-  ax.text(
-      11.8,
-      3.4,
-      'Human Body Structures',
+  m_t10 = ax1.text(
+      9.25,
+      2.5,
+      'Body Structures',
       ha='center',
       va='center',
-      fontsize=11,
       fontweight='bold',
       color='#1B5E20',
   )
-  ax.text(
-      11.8,
-      2.8,
-      'Muscle (Actin / Myosin)\nSkin & Hair (Keratin)',
+  m_t11 = ax1.text(
+      9.25,
+      2.0,
+      'Muscle, Skin & Hair',
       ha='center',
       va='center',
-      fontsize=8.5,
       color='#333333',
   )
-  ax.text(
-      11.8,
-      2.1,
-      '[New Cellular Polymers]',
+  m_t12 = ax1.text(
+      9.25,
+      1.5,
+      '[Human Polymers]',
       ha='center',
       va='center',
-      fontsize=8,
       style='italic',
       color='#555555',
   )
 
-  plt.title(
-      'Metabolism: How Catabolic and Anabolic Reactions Turn Meals into You',
-      fontsize=12,
-      fontweight='bold',
-      pad=16,
+  # --- panel 2: membrane transport ---
+  ax2.set_xlim(0, 11)
+  ax2.set_ylim(0, 4.5)
+  ax2.axis('off')
+  title2 = ax2.set_title(
+      'Selective Permeability of the Cell Membrane', fontweight='bold', pad=10
   )
-  plt.tight_layout()
-  plt.savefig('metabolism_diagram.png', bbox_inches='tight')
-  plt.show()
 
-
-def create_membrane_diagram():
-  fig, ax = plt.subplots(figsize=(14, 5.5), dpi=300)
-  ax.set_xlim(0, 14)
-  ax.set_ylim(0, 6)
-  ax.axis('off')
-
-  # membrane bilayer
-  ax.add_patch(
+  # membrane bilayer representation
+  ax2.add_patch(
       patches.Rectangle(
-          (0.5, 2.4),
-          13.0,
-          1.2,
+          (0.5, 1.75),
+          10.0,
+          1.0,
           fc='#FFF3E0',
           ec='#FF9800',
-          lw=2,
+          lw=1.8,
           linestyle='--',
       )
   )
-  ax.text(
-      0.8,
-      3.0,
-      'Phospholipid Bilayer\n(Hydrophobic Interior)',
+  c_t1 = ax2.text(
+      0.7,
+      2.25,
+      'Phospholipid Bilayer\n(Hydrophobic Core)',
       ha='left',
       va='center',
-      fontsize=8.5,
       fontweight='bold',
       color='#E65100',
   )
 
   # region labels
-  ax.text(
-      7.0,
+  c_t2 = ax2.text(
       5.5,
+      4.1,
       'Extracellular Fluid (Outside Cell)',
       ha='center',
       va='center',
-      fontsize=11,
       fontweight='bold',
   )
-  ax.text(
-      7.0,
-      0.5,
+  c_t3 = ax2.text(
+      5.5,
+      0.4,
       'Cytoplasm (Inside Cell)',
       ha='center',
       va='center',
-      fontsize=11,
       fontweight='bold',
   )
 
   # simple diffusion
-  ax.annotate(
+  ax2.annotate(
       '',
-      xy=(4.5, 1.2),
-      xytext=(4.5, 4.8),
+      xy=(3.6, 0.9),
+      xytext=(3.6, 3.6),
       arrowprops=dict(
-          facecolor='#1E88E5', edgecolor='#1E88E5', width=2.5, headwidth=8
+          facecolor='#1E88E5', edgecolor='#1E88E5', width=2, headwidth=6
       ),
   )
-  ax.text(
-      4.5,
-      5.0,
-      'Small Non-Polar Molecules\n(O2, CO2, Lipids)',
+  c_t4 = ax2.text(
+      3.6,
+      3.7,
+      'Small Non-Polar\n(O2, CO2, Lipids)',
       ha='center',
       va='bottom',
       fontweight='bold',
       color='#1565C0',
-      fontsize=8.5,
   )
-  ax.text(
-      4.5,
-      1.0,
-      'Simple Diffusion\n(Directly crosses bilayer)',
+  c_t5 = ax2.text(
+      3.6,
+      0.7,
+      'Simple Diffusion\n(Direct Crossing)',
       ha='center',
       va='top',
-      fontsize=8,
+      color='#444444',
   )
 
   # protein channel
-  ax.add_patch(
+  ax2.add_patch(
       patches.FancyBboxPatch(
-          (8.8, 2.0),
+          (7.0, 1.45),
+          1.3,
           1.6,
-          2.0,
-          boxstyle='round,pad=0.1',
+          boxstyle='round,pad=0.08',
           fc='#B0BEC5',
           ec='#37474F',
-          lw=2,
+          lw=1.8,
       )
   )
-  ax.text(
-      9.6,
-      3.0,
+  c_t6 = ax2.text(
+      7.65,
+      2.25,
       'Protein\nChannel',
       ha='center',
       va='center',
       color='#263238',
       fontweight='bold',
-      fontsize=8.5,
   )
 
   # facilitated transport
-  ax.annotate(
+  ax2.annotate(
       '',
-      xy=(9.6, 1.2),
-      xytext=(9.6, 4.8),
+      xy=(7.65, 0.9),
+      xytext=(7.65, 3.6),
       arrowprops=dict(
-          facecolor='#D81B60', edgecolor='#D81B60', width=2.5, headwidth=8
+          facecolor='#D81B60', edgecolor='#D81B60', width=2, headwidth=6
       ),
   )
-  ax.text(
-      9.6,
-      5.0,
+  c_t7 = ax2.text(
+      7.65,
+      3.7,
       'Large / Polar / Ions\n(Glucose, Na+)',
       ha='center',
       va='bottom',
       fontweight='bold',
       color='#AD1457',
-      fontsize=8.5,
   )
-  ax.text(
-      9.6,
-      1.0,
-      'Facilitated Transport\n(Requires channel)',
+  c_t8 = ax2.text(
+      7.65,
+      0.7,
+      'Facilitated Transport\n(Requires Channel)',
       ha='center',
       va='top',
-      fontsize=8,
+      color='#444444',
   )
 
-  plt.title(
-      'Selective Permeability of the Cell Membrane',
-      fontsize=12,
-      fontweight='bold',
-      pad=16,
-  )
-  plt.tight_layout()
-  plt.savefig('membrane_diagram.png', bbox_inches='tight')
+  # element groups for adaptive scaling
+  titles = [title1, title2]
+  headers = [m_t1, m_t6, m_t10, c_t2, c_t3]
+  subs = [
+      m_t2,
+      m_t3,
+      m_t4,
+      m_t5,
+      m_t7,
+      m_t8,
+      m_t9,
+      m_t11,
+      m_t12,
+      c_t1,
+      c_t4,
+      c_t5,
+      c_t6,
+      c_t7,
+      c_t8,
+  ]
+
+  # dynamic resize handler
+  def on_resize(event):
+    scale = fig.get_size_inches()[0] / 11.0
+    for t in titles:
+      t.set_fontsize(max(8.0, 11.0 * scale))
+    for h in headers:
+      h.set_fontsize(max(6.5, 9.5 * scale))
+    for s in subs:
+      s.set_fontsize(max(5.5, 7.5 * scale))
+    fig.canvas.draw_idle()
+
+  # connect resize listener
+  fig.canvas.mpl_connect('resize_event', on_resize)
+  on_resize(None)
+
+  # layout padding and save files
+  plt.tight_layout(pad=2.0)
+  plt.savefig('biology_unit1_diagrams.png', dpi=300, bbox_inches='tight')
+  plt.savefig('biology_unit1_diagrams.pdf', bbox_inches='tight')
   plt.show()
 
 
-create_metabolism_diagram()
-create_membrane_diagram()
+create_combined_diagrams()
